@@ -1,6 +1,7 @@
 #include "symon_app.h"
 
 #include "symon_constants.h"
+#include "symon_window.h"
 
 #include <gtk/gtk.h>
 
@@ -11,11 +12,7 @@ static void symon_activate(GtkApplication *application, gpointer user_data)
     (void)user_data;
 
     if (window == NULL) {
-        g_autoptr(GtkBuilder) builder =
-            gtk_builder_new_from_resource("/io/github/symon/SyMon/ui/main-window.ui");
-
-        window = GTK_WINDOW(gtk_builder_get_object(builder, "main_window"));
-        gtk_window_set_application(window, application);
+        window = symon_window_new(application);
     }
 
     gtk_window_present(window);
