@@ -48,6 +48,7 @@ add_executable(
     symon
     src/app/main.c
     src/app/symon_app.c
+    src/app/symon_window.c
     "${SYMON_RESOURCE_SOURCE}"
 )
 
@@ -84,7 +85,7 @@ set_source_files_properties(
 )
 
 target_include_directories(symon PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/app")
-target_link_libraries(symon PRIVATE PkgConfig::GTK4)
+target_link_libraries(symon PRIVATE PkgConfig::GTK4 symon_core)
 
 symon_enable_project_warnings(symon)
 symon_enable_sanitizers(symon)
