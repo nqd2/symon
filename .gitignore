@@ -61,5 +61,4 @@ dkms.conf
 
 # Reference checkouts are inspection-only and never committed.
 /vendor/
-
-/docs/
+/docs/ 
