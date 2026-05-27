@@ -34,6 +34,8 @@ static int test_snapshot_reset(void)
         .sequence = 99,
         .collectors_completed = 2,
         .collectors_failed = 1,
+        .cpu.available = true,
+        .memory.available = true,
     };
 
     symon_error_set(&snapshot.last_collector_error, SYMON_ERROR_COLLECTOR, 0, "failed");
@@ -45,6 +47,8 @@ static int test_snapshot_reset(void)
     REQUIRE(snapshot.collectors_completed == 0);
     REQUIRE(snapshot.collectors_failed == 0);
     REQUIRE(!symon_error_is_set(&snapshot.last_collector_error));
+    REQUIRE(!snapshot.cpu.available);
+    REQUIRE(!snapshot.memory.available);
 
     return 0;
 }
