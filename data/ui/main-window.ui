@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkApplicationWindow" id="main_window">
+    <property name="title">SyMon</property>
+    <property name="default-width">920</property>
+    <property name="default-height">620</property>
+    <property name="titlebar">
+      <object class="GtkHeaderBar"/>
+    </property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
+        <property name="margin-top">24</property>
+        <property name="margin-bottom">24</property>
+        <property name="margin-start">24</property>
+        <property name="margin-end">24</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">SyMon</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="title-1"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Lightweight System Monitor</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Metric collectors arrive in the next milestone.</property>
+            <property name="halign">center</property>
+            <property name="hexpand">true</property>
+            <property name="vexpand">true</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
