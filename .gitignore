@@ -53,3 +53,13 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# CMake build trees and generated tooling output
+/build/
+/build-*/
+/compile_commands.json
+
+# Reference checkouts are inspection-only and never committed.
+/vendor/
+
+/docs/
