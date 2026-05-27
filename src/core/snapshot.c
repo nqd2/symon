@@ -13,4 +13,6 @@ void symon_snapshot_reset(SymonSnapshot *snapshot, uint64_t sequence, uint64_t r
     snapshot->collectors_completed = 0;
     snapshot->collectors_failed = 0;
     symon_error_clear(&snapshot->last_collector_error);
+    snapshot->cpu = (SymonCpuMetrics){0};
+    snapshot->memory = (SymonMemoryMetrics){0};
 }

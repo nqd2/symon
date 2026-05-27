@@ -58,6 +58,8 @@ add_library(
     src/core/ring_buffer.c
     src/core/scheduler.c
     src/core/snapshot.c
+    src/collectors/linux_cpu.c
+    src/collectors/linux_memory.c
     src/platform/linux/linux_clock.c
     src/platform/linux/linux_file.c
 )
@@ -131,4 +133,23 @@ if(BUILD_TESTING)
     symon_enable_sanitizers(symon_scheduler_test)
     symon_enable_static_analysis(symon_scheduler_test)
     add_test(NAME symon.scheduler COMMAND symon_scheduler_test)
+
+    add_executable(symon_linux_cpu_test tests/unit/test_linux_cpu.c)
+    target_link_libraries(symon_linux_cpu_test PRIVATE symon_core)
+    symon_enable_project_warnings(symon_linux_cpu_test)
+    symon_enable_sanitizers(symon_linux_cpu_test)
+    symon_enable_static_analysis(symon_linux_cpu_test)
+    add_test(NAME symon.linux_cpu COMMAND symon_linux_cpu_test)
+    set_tests_properties(symon.linux_cpu PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+
+    add_executable(symon_linux_memory_test tests/unit/test_linux_memory.c)
+    target_link_libraries(symon_linux_memory_test PRIVATE symon_core)
+    symon_enable_project_warnings(symon_linux_memory_test)
+    symon_enable_sanitizers(symon_linux_memory_test)
+    symon_enable_static_analysis(symon_linux_memory_test)
+    add_test(NAME symon.linux_memory COMMAND symon_linux_memory_test)
+    set_tests_properties(
+        symon.linux_memory
+        PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
 endif()
