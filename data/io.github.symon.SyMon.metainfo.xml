@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.symon.SyMon</id>
+  <name>SyMon</name>
+  <summary>Lightweight system monitor and process manager</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <description>
+    <p>
+      SyMon is a native Linux desktop application for monitoring system resources and managing
+      processes with low overhead.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/nqd2/symon</url>
+  <launchable type="desktop-id">io.github.symon.SyMon.desktop</launchable>
+  <content_rating type="oars-1.1"/>
+  <developer id="io.github.symon">
+    <name>SyMon contributors</name>
+  </developer>
+  <releases>
+    <release version="0.1.0" date="2026-05-27"/>
+  </releases>
+</component>

@@ -1,0 +1,7 @@
+BasedOnStyle: LLVM
+AllowShortFunctionsOnASingleLine: None
+BreakBeforeBraces: Linux
+ColumnLimit: 100
+IndentWidth: 4
+SortIncludes: CaseSensitive
+UseTab: Never

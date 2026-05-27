@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=SyMon
+GenericName=System Monitor
+Comment=Lightweight system monitor and process manager
+Exec=symon
+Icon=io.github.symon.SyMon
+Terminal=false
+Type=Application
+Categories=System;Monitor;
+Keywords=system;monitor;task;process;cpu;memory;gpu;

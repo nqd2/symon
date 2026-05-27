@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkStringList" id="refresh_options">
+    <items>
+      <item>250 ms</item>
+      <item>500 ms</item>
+      <item>1 s</item>
+      <item>2 s</item>
+      <item>5 s</item>
+    </items>
+  </object>
+  <object class="GtkApplicationWindow" id="main_window">
+    <property name="title">SyMon</property>
+    <property name="default-width">920</property>
+    <property name="default-height">620</property>
+    <property name="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="label">Overview</property>
+            <style>
+              <class name="title"/>
+            </style>
+          </object>
+        </property>
+        <child type="end">
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">8</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Refresh</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="refresh_dropdown">
+                <property name="model">refresh_options</property>
+                <property name="selected">1</property>
+                <property name="tooltip-text">Sampling refresh interval</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="width-request">190</property>
+            <property name="spacing">4</property>
+            <property name="margin-top">18</property>
+            <property name="margin-bottom">18</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">System</property>
+                <property name="halign">start</property>
+                <property name="margin-start">12</property>
+                <property name="margin-bottom">8</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Overview</property>
+                <property name="sensitive">false</property>
+                <property name="halign">fill</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">CPU and Memory live now</property>
+                <property name="wrap">true</property>
+                <property name="halign">start</property>
+                <property name="margin-top">18</property>
+                <property name="margin-start">12</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator"/>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">true</property>
+            <property name="vexpand">true</property>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">20</property>
+                <property name="margin-top">28</property>
+                <property name="margin-bottom">28</property>
+                <property name="margin-start">28</property>
+                <property name="margin-end">28</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">4</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label">System Overview</property>
+                        <property name="halign">start</property>
+                        <style>
+                          <class name="title-1"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="status_label">
+                        <property name="label">Starting collection...</property>
+                        <property name="halign">start</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkGrid">
+                    <property name="column-spacing">12</property>
+                    <property name="row-spacing">12</property>
+                    <property name="column-homogeneous">true</property>
+                    <child>
+                      <object class="GtkFrame">
+                        <property name="hexpand">true</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">10</property>
+                            <property name="margin-top">16</property>
+                            <property name="margin-bottom">16</property>
+                            <property name="margin-start">18</property>
+                            <property name="margin-end">18</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">CPU</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="cpu_value">
+                                <property name="label">Sampling...</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="title-2"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkFrame">
+                        <property name="hexpand">true</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">10</property>
+                            <property name="margin-top">16</property>
+                            <property name="margin-bottom">16</property>
+                            <property name="margin-start">18</property>
+                            <property name="margin-end">18</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Memory Used</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="memory_value">
+                                <property name="label">--</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="title-2"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkFrame">
+                        <property name="hexpand">true</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">1</property>
+                        </layout>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">10</property>
+                            <property name="margin-top">16</property>
+                            <property name="margin-bottom">16</property>
+                            <property name="margin-start">18</property>
+                            <property name="margin-end">18</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Swap Used</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="swap_value">
+                                <property name="label">--</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="title-2"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkFrame">
+                        <property name="hexpand">true</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">1</property>
+                        </layout>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">10</property>
+                            <property name="margin-top">16</property>
+                            <property name="margin-bottom">16</property>
+                            <property name="margin-start">18</property>
+                            <property name="margin-end">18</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Load Average</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="load_value">
+                                <property name="label">--  --  --</property>
+                                <property name="halign">start</property>
+                                <style>
+                                  <class name="title-2"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">CPU usage appears after two samples. Values update without storing history.</property>
+                    <property name="halign">start</property>
+                    <property name="wrap">true</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

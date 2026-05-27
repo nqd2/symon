@@ -1,0 +1,63 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    name: Ubuntu 24.04 debug
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install build and analysis dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends \
+            build-essential clang-format clang-tidy cmake cppcheck libgtk-4-dev pkg-config
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSYMON_ENABLE_CLANG_TIDY=ON
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Check formatting
+        run: clang-format --dry-run --Werror $(git ls-files '*.c' '*.h')
+
+      - name: Run cppcheck
+        run: >-
+          cppcheck --enable=warning,style,performance,portability --error-exitcode=1
+          --suppress=missingIncludeSystem src/ tests/
+
+  sanitizers:
+    name: Ubuntu 24.04 sanitizers
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends build-essential cmake libgtk-4-dev pkg-config
+
+      - name: Configure
+        run: >-
+          cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=Debug
+          -DSYMON_ENABLE_ASAN=ON -DSYMON_ENABLE_UBSAN=ON
+
+      - name: Build
+        run: cmake --build build-asan --parallel
+
+      - name: Test
+        run: ctest --test-dir build-asan --output-on-failure
